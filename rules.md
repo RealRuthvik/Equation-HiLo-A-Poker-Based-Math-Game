@@ -1,73 +1,54 @@
-# **Equation Hi-Lo: Game Rules**
+# **🧮 Equation Hi-Lo: Rules of the Game**
 
-This game is directly inspired by the "Equation Hi-Lo" Main Match from the Netflix survival show The Devil's Plan. For a more immersive understanding of the strategy, pacing, and atmosphere, it is highly recommended to watch Episode 7 of the series.
+Welcome to Equation Hi-Lo, a game of strategy, betting, and quick math inspired by Netflix’s The Devil’s Plan.
 
-## **1\. Core Mechanics**
+In this version, you will compete against two opponents: a Bot Player and a Dealer Bot. Your goal is to build the best mathematical equation to win the pot of chips.
 
-The game is a hybrid of Poker-style betting, High-Low prediction, and the math puzzle 24. Players use a set of number and operation cards to reach a target value.
+## **🎮 The Setup**
 
-### **Players**
+* **Players:** 3 Total (User, Bot Player, and Dealer Bot).  
+* **The Deck:** Contains number cards (0–10) and four "suits" used for tie-breaking: Gold \> Silver \> Bronze \> Dirt.  
+* **Operations:** You always have access to Addition (+), Subtraction (-), and Division (÷).  
+* **Special Operations:** Multiplication (×) and Square Root (√) cards are hidden in the deck. If you draw one, it replaces one of your basic operations.
 
-* **2 Active Players:** Competitors who bet chips and construct equations.  
-* **1 Dealer (System):** Manages the deck, handles payouts, and validates mathematical strings.
+## **🔄 Gameplay Loop**
 
-### **The Deck**
+1. Ante & Private Card  
+   Every player starts by putting 1 Chip into the pot (the Ante). You are then dealt one Private Card that only you can see.  
+2. First Betting Round  
+   Based on your one card, you can:  
+   * **Check:** Stay in the game without adding chips (if no one else has bet).  
+   * **Bet/Raise:** Add chips to the pot to increase the stakes.  
+   * **Call:** Match the current highest bet to stay in the game.  
+   * **Fold:** Give up your cards and your chips already in the pot.  
+3. The Public Reveal  
+   The dealer deals 3 Public Cards face-up for everyone to see.  
+   * *Note: If you get a special card (× or √), the dealer will give you an extra number card to ensure you always have exactly 4 numbers to work with.*  
+4. Final Betting Round  
+   Now that you can see your opponents' public cards, there is one final round of betting to increase the pot.  
+5. The Declaration  
+   You must choose one of three targets for your final equation:  
+   * **LOW:** You want your result to be as close to 1 as possible.  
+   * **HIGH:** You want your result to be as close to 20 as possible.  
+   * **SWING:** A high-risk move. You must have the best result for BOTH High and Low. If you lose either, you lose everything\!
 
-* **Number Cards:** Values 0–10.  
-* **Suits (Tie-breakers):** Gold \> Silver \> Bronze \> Dirt.  
-* **Standard Operations:** Every player starts with permanent access to \+, \-, and ÷.  
-* **Special Operations:** × (Multiplication) and √ (Square Root) are hidden within the number deck.
+## **🧮 Mathematical Rules**
 
-## **2\. Gameplay Loop**
+This is where the game differs from standard math:
 
-### **Phase 1: Ante & The Hidden Card**
+* **Left-to-Right Only:** Ignore PEMDAS/BODMAS. Equations are solved strictly from left to right.  
+  * *Example: 2 \+ 3 \* 4 is 5 \* 4 \= 20 (not 14).*  
+* **No Brackets:** You cannot use parentheses.  
+* **Use Everything:** You must use all 4 number cards and 3 operation cards in your equation.  
+* **Decimals Matter:** Results can be decimals or negative numbers. For example, 0.8 is considered closer to 1 than 1.5 is.
 
-1. Both players pay a **1 Chip Ante**.  
-2. Each player is dealt **1 Private Card** (visible only to them).  
-3. **Betting Round 1:** Standard Poker actions (Check, Bet, Call, or Fold).
-
-### **Phase 2: The Public Reveal**
-
-1. Each player is dealt **3 Face-up Cards**.  
-2. **Special Card Rule:** If a player receives a × or √ from the deck, they keep it but must "discard" one of their basic operations.  
-3. The Dealer then provides an extra number card to ensure every player always has exactly **4 numbers**.  
-4. **Final Betting Round:** Stakes are raised based on the visible cards of the opponent.
-
-### **Phase 3: The Declaration**
-
-Players secretly choose one of three targets:
-
-* **LOW:** Aiming for a result closest to **1**.  
-* **HIGH:** Aiming for a result closest to **20**.  
-* **SWING:** A high-risk bet. You must win **BOTH** High and Low targets. If you lose either, you lose the entire pot.
-
-## **3\. Mathematical Rules (The "Engine")**
-
-When implementing the Python logic, the following constraints must be hard-coded:
-
-* **PEMDAS/BODMAS:** Multiplication, Division, and Square Roots take priority over Addition and Subtraction.  
-* **No Brackets:** Players cannot use parentheses to alter the calculation order.  
-* **Mandatory Usage:** Every equation must use all **4 number cards** and **3 operation cards**.  
-* **Target Logic:** Results can be negative or decimals. (Example: 0.8 is numerically closer to 1 than 1.5 is).  
-* **Comparison:** If two players both target "High," the one numerically closest to 20 wins.
-
-## **4\. Winning and Payouts**
+## **🏆 Winning & Tie-Breakers**
 
 | Scenario | Outcome |
 | :---- | :---- |
-| **Split Pot** | Player A chooses High and Player B chooses Low; both win their respective halves. |
-| **Winner-Takes-All** | Both players choose the same target; the closer result wins the full pot. |
-| **Swing Success** | If a player chooses Swing and has the best High AND best Low hand, they take the pot. |
-| **Swing Failure** | If a Swing player loses either the High or Low comparison, the opponent wins the pot. |
+| **Split Pot** | If you go for High and an opponent goes for Low, you both win half the pot. |
+| **Winner-Takes-All** | If you and an opponent choose the same target, the person closest to the target number wins the whole pot. |
+| **Swing Win** | If you choose Swing and beat everyone at both High and Low, you take the entire pot. |
+| **Swing Failure** | If you choose Swing but lose even one comparison (High or Low), your opponent wins the pot. |
 
-### **Tie-Breakers**
-
-If the numerical results are identical, the winner is determined by the **Suit Rank** of the highest-ranking color card among the four numbers used in the equation.
-
-## **5\. Implementation Strategy (Python Build)**
-
-For a robust build, consider using the itertools.permutations library. This allows you to create a **Solver Function** that:
-
-1. Generates all permutations of the 4 numbers.  
-2. Generates all permutations of the 3 available operations.  
-3. Evaluates the resulting strings using eval() (with proper security handling) to find the optimal result for the player's chosen target.
+**The Tie-Breaker:** If numerical results are identical, the winner is the person who used the card with the highest-ranking suit (Gold being the best).

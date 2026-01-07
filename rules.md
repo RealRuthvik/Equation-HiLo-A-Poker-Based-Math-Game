@@ -36,8 +36,6 @@ In this version, you will compete against two opponents: a Bot Player and a Deal
 
 This is where the game differs from standard math:
 
-* **Left-to-Right Only:** Ignore PEMDAS/BODMAS. Equations are solved strictly from left to right.  
-  * *Example: 2 \+ 3 \* 4 is 5 \* 4 \= 20 (not 14).*  
 * **No Brackets:** You cannot use parentheses.  
 * **Use Everything:** You must use all 4 number cards and 3 operation cards in your equation.  
 * **Decimals Matter:** Results can be decimals or negative numbers. For example, 0.8 is considered closer to 1 than 1.5 is.

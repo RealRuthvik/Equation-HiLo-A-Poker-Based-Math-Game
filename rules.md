@@ -1,10 +1,10 @@
-# **Equation Hi-Lo: Game Documentation**
+# **Equation Hi-Lo: Game Rules**
 
-This guide provides the core mechanics, rules, and logic required to build a digital version of the **Equation Hi-Lo** game, inspired by the Netflix survival show *The Devil's Plan*.
+This game is directly inspired by the "Equation Hi-Lo" Main Match from the Netflix survival show The Devil's Plan. For a more immersive understanding of the strategy, pacing, and atmosphere, it is highly recommended to watch Episode 7 of the series.
 
 ## **1\. Core Mechanics**
 
-The game is a hybrid of Poker-style betting, High-Low prediction, and the math puzzle "24."
+The game is a hybrid of Poker-style betting, High-Low prediction, and the math puzzle 24. Players use a set of number and operation cards to reach a target value.
 
 ### **Players**
 

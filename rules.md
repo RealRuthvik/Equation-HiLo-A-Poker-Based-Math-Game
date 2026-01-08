@@ -1,6 +1,6 @@
 # **Equation Hi-Lo: Rules of the Game**
 
-Welcome to Equation Hi-Lo, a game of strategy, betting, and quick math inspired by Netflix’s The Devil’s Plan.
+Welcome to Equation Hi-Lo, a game of strategy, betting, and quick math copied from Netflix’s The Devil’s Plan.
 
 In this version, you will compete against two opponents: a Bot Player and a Dealer Bot. Your goal is to build the best mathematical equation to win the pot of chips.
 
